@@ -11,7 +11,7 @@ set(SWIFT_COMMAND
         -Xcc -I/usr/local/include
         -Xswiftc -lmysqlclient)
 
-add_custom_target(maria
+add_custom_target(MariaDbTaler
         COMMAND ${SWIFT_COMMAND}
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         SOURCES ${SOURCE_FILES})
