@@ -1,0 +1,9 @@
+/cmake*
+/CMake*
+!/CMakeLists.txt
+/Makefile
+
+.DS_Store
+/.build
+/Packages
+/*.xcodeproj
