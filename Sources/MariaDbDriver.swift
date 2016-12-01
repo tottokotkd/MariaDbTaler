@@ -15,7 +15,6 @@ public struct MariaDB: Driver {
     }
 }
 
-
 public struct MariaDbPool: Pool {
     public typealias C = MariaDbConnection
     
@@ -34,12 +33,11 @@ public struct MariaDbPool: Pool {
     }
     
     public func execute(sql: String) -> [Row] {
-        let connect = conncect()
-        let result = connect.execute(sql: sql)
+        let result = connect().execute(sql: sql)
         return result
     }
     
-    func conncect() -> MariaDbConnection {
+    public func connect() -> C {
         return MariaDbConnection(mysql: mysql_real_connect(mysql_init(nil), host, user, password, database, UInt32(port), nil, 0)!)
     }
 }
@@ -112,7 +110,7 @@ public struct MariaDbRowItem: RowItem {
         return p.map{ String(cString: $0) }
     }
     public var asInt: Int? {
-        return p.map{ Int(bitPattern: $0) }
+        return asString.map{Int($0)!}
     }
     public var asDate: Date? {
         return (info?.systemTimeZone).flatMap {zone -> Date? in

@@ -2,6 +2,7 @@
 /CMake*
 !/CMakeLists.txt
 /Makefile
+/*.cbp
 
 .DS_Store
 /.build
